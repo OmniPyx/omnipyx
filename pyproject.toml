@@ -22,10 +22,14 @@ dependencies = [
     "django-admin-interface (>=0.30.0,<0.31.0)",
     "django-colorfield (>=0.14.0,<0.15.0)",
     "django-money (>=3.5.4,<4.0.0)",
-    "drf-spectacular[swagger-ui] (>=0.28.0,<0.29.0)"
+    "drf-spectacular[swagger-ui] (>=0.28.0,<0.29.0)",
+    "omnipyx-crm @ file:///C:/Users/diego/Documents/omnipyx-crm",
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+omnipyx-crm = {develop = true}

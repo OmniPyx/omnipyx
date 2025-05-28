@@ -342,6 +342,25 @@ files = [
 referencing = ">=0.31.0"
 
 [[package]]
+name = "omnipyx-crm"
+version = "0.1.0"
+description = "CRM module for Omnipyx platform"
+optional = false
+python-versions = ">=3.11"
+groups = ["main"]
+files = []
+develop = true
+
+[package.dependencies]
+django = ">=4.2"
+django-money = "*"
+djangorestframework = "*"
+
+[package.source]
+type = "directory"
+url = "../omnipyx-crm"
+
+[[package]]
 name = "packaging"
 version = "25.0"
 description = "Core utilities for Python packages"
@@ -892,4 +911,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "8721ecdd5da80b4896d6db8305379b99afbaa985a9f28b4f870cf2fc5702a40d"
+content-hash = "d87bf6c9d113395751202f615effa67a0f98eee3643f5f69956045c8e8d589a7"
