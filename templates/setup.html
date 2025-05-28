@@ -4,27 +4,180 @@
     <meta charset="UTF-8">
     <title>Omnipyx Setup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-indigo-100 via-white to-indigo-200 min-h-screen flex items-center justify-center px-4">
-<div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-indigo-300">
-    <h1 class="text-2xl font-bold text-indigo-700 mb-4 text-center">Welcome to Omnipyx</h1>
-    <p class="text-sm text-gray-500 text-center mb-6">Let’s configure your instance for the first time</p>
+<div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-3xl border border-indigo-300">
+    <h1 class="text-3xl font-bold text-indigo-700 mb-4 text-center">🚀 Welcome to Omnipyx Setup</h1>
+    <p class="text-sm text-gray-600 text-center mb-6">Let’s configure your instance for the first time</p>
 
-    <form method="post" class="space-y-4">
+    <form method="post" class="grid grid-cols-2 gap-4" id="setup-form">
         {% csrf_token %}
+
+        <!-- General Info -->
+        <div class="col-span-2"><h2 class="text-lg font-semibold text-indigo-600">General Information</h2></div>
+
         <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Your Name or Company</label>
-            <input type="text" name="name" id="name" required
-                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            <label for="name" class="block text-sm font-medium text-gray-700">Company or Site Name</label>
+            <input type="text" name="name" id="name" required placeholder="e.g. Acme Corp"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
         </div>
 
-        <button type="submit"
-                class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-200 font-semibold">
-            Create License and Setup
-        </button>
+        <div>
+            <label for="company_email" class="block text-sm font-medium text-gray-700">Company Email</label>
+            <input type="email" name="company_email" id="company_email" placeholder="e.g. contact@acme.com"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div>
+            <label for="company_phone" class="block text-sm font-medium text-gray-700">Phone</label>
+            <input type="text" name="company_phone" id="company_phone" placeholder="+57 300 000 0000"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div>
+            <label for="preferred_language" class="block text-sm font-medium text-gray-700">Language</label>
+            <select name="preferred_language" id="preferred_language"
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="license_type" class="block text-sm font-medium text-gray-700">License Type</label>
+            <select name="license_type" id="license_type"
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+                <option value="full">Full</option>
+                <option value="trial">Trial</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="partner_code" class="block text-sm font-medium text-gray-700">Partner Code</label>
+            <input type="text" name="partner_code" id="partner_code" placeholder="Optional"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div class="col-span-2 flex items-center space-x-2">
+            <input type="checkbox" name="enable_audit" id="enable_audit" class="h-4 w-4 text-indigo-600 border-gray-300">
+            <label for="enable_audit" class="text-sm text-gray-700">Enable audit logs</label>
+        </div>
+
+        <div class="col-span-2 flex items-center space-x-2">
+            <input type="checkbox" name="accepted_terms" id="accepted_terms" required class="h-4 w-4 text-indigo-600 border-gray-300">
+            <label for="accepted_terms" class="text-sm text-gray-700">I accept the terms and conditions</label>
+        </div>
+
+        <!-- Database Config -->
+        <div class="col-span-2 mt-6"><h2 class="text-lg font-semibold text-indigo-600">Database Configuration</h2></div>
+
+        <div>
+            <label for="db_engine" class="block text-sm font-medium text-gray-700">DB Engine</label>
+            <select name="db_engine" id="db_engine"
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm"
+                    onchange="toggleDbFields()">
+                <option value="django.db.backends.postgresql">PostgreSQL</option>
+                <option value="django.db.backends.mysql">MySQL</option>
+                <option value="django.db.backends.sqlite3">SQLite</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="db_name" class="block text-sm font-medium text-gray-700">DB Name / Path</label>
+            <input type="text" name="db_name" id="db_name" required placeholder="e.g. mydb or db.sqlite3"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div class="db-credentials">
+            <label for="db_user" class="block text-sm font-medium text-gray-700">DB User</label>
+            <input type="text" name="db_user" id="db_user"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div class="db-credentials">
+            <label for="db_password" class="block text-sm font-medium text-gray-700">DB Password</label>
+            <input type="password" name="db_password" id="db_password"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div class="db-credentials">
+            <label for="db_host" class="block text-sm font-medium text-gray-700">Host</label>
+            <input type="text" name="db_host" id="db_host" value="localhost"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div class="db-credentials">
+            <label for="db_port" class="block text-sm font-medium text-gray-700">Port</label>
+            <input type="text" name="db_port" id="db_port" value="5432"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <div class="col-span-2 flex justify-between items-center mt-4">
+            <button type="button" onclick="testConnection()"
+                    class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+                🔌 Test DB Connection
+            </button>
+            <span id="db-test-result" class="text-sm font-medium text-gray-600"></span>
+        </div>
+
+        <div class="col-span-2 mt-6">
+            <button type="submit"
+                    class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-200 font-semibold">
+                💾 Create License and Setup
+            </button>
+        </div>
     </form>
 </div>
+
+<script>
+    function toggleDbFields() {
+        const engine = document.getElementById("db_engine").value;
+        const dbFields = document.querySelectorAll(".db-credentials");
+
+        dbFields.forEach(el => {
+            el.style.display = (engine.includes("sqlite3")) ? "none" : "block";
+        });
+
+        document.getElementById("db_host").value = engine.includes("postgresql") ? "localhost" : "";
+        document.getElementById("db_port").value = engine.includes("postgresql") ? "5432" :
+            engine.includes("mysql") ? "3306" : "";
+    }
+
+    async function testConnection() {
+        const form = document.getElementById("setup-form");
+        const formData = new FormData(form);
+        const resultEl = document.getElementById("db-test-result");
+
+        resultEl.textContent = "🔍 Testing...";
+        resultEl.className = "text-sm font-medium text-gray-600";
+
+        try {
+            const response = await fetch("/setup/test-db/", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": formData.get("csrfmiddlewaretoken"),
+                    "Accept": "application/json"
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                resultEl.textContent = "✅ Connection successful!";
+                resultEl.className = "text-sm font-medium text-green-600";
+            } else {
+                resultEl.textContent = "❌ " + data.error;
+                resultEl.className = "text-sm font-medium text-red-600";
+            }
+        } catch (error) {
+            resultEl.textContent = "❌ Unexpected error: " + error.message;
+            resultEl.className = "text-sm font-medium text-red-600";
+        }
+    }
+
+    // Trigger initial state
+    document.addEventListener("DOMContentLoaded", toggleDbFields);
+</script>
 </body>
 </html>
