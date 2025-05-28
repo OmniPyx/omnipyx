@@ -29,6 +29,37 @@ It's the backbone of the upcoming **Zentryx** platform – a modern ERP-style cl
 
 ---
 
+## 🧭 Roadmap Modular para Omnipyx SaaS
+✅ 1. Fundamentos multitenant híbridos
+  - Estructura modular Django + Poetry
+  - Carga dinámica de apps con entry_points (omnipyx.modules)
+  - Configurar multitenancy con múltiples bases de datos (una por sitio)
+  - Manejo de tenant actual según dominio o cabecera HTTP (X-Tenant)
+
+🔐 2. Sistema de licenciamiento
+  - Validar licencias activas por instalación
+  - Generación/registro de licencias (con firma y/o cifrado)
+  - Comprobación automática al levantar instancia o ejecutar comando
+
+⚙️ 3. Setup inicial dinámico
+  - Si no hay sitios configurados, redirigir al wizard de instalación
+  - Wizard de configuración de instancia: nombre del sistema, superusuario, conexión DB, dominio
+  - Setup básico de licencia y validación
+
+🏢 4. Soporte multiempresa dentro del sitio
+  - Modelo Organization o Company relacionado por FK a cada recurso
+  - Separación de datos por empresa dentro del tenant (via queryset managers)
+
+🧩 5. Admin multisite (SuperAdmin)
+  - Panel central de administración de sitios
+  - Dashboard de estado por instancia (licencia, DB, uso)
+
+📦 6. Distribución modular
+  - Sistema de instalación estilo tienda de módulos (gratuitos/pagos)
+  - Activación/desactivación desde panel web
+
+---
+
 ## 📦 Requirements
 
 - Python 3.11+

@@ -25,6 +25,9 @@ django-colorfield = "^0.14.0"
 django-money = "^3.5.4"
 drf-spectacular = {extras = ["swagger-ui"], version = "^0.28.0"}
 omnipyx-crm = {path = "../omnipyx-crm", develop = true}
+django-constance = "^4.3.2"
+django-db-multitenant = "^0.3.2"
+django-tenants = "^3.8.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0"]

@@ -103,6 +103,21 @@ files = [
 Pillow = ">=9.0.0"
 
 [[package]]
+name = "django-constance"
+version = "4.3.2"
+description = "Django live settings with pluggable backends, including Redis."
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "django_constance-4.3.2-py3-none-any.whl", hash = "sha256:cd3e08f4cac457016db550a9244177da39cef8e39f4a56859692306cc8f11dc1"},
+    {file = "django_constance-4.3.2.tar.gz", hash = "sha256:d86e6b6a797157a4b49d0c679f1b7b9c70b1b540f36dfcda5346736997ae51bd"},
+]
+
+[package.extras]
+redis = ["redis"]
+
+[[package]]
 name = "django-cors-headers"
 version = "4.7.0"
 description = "django-cors-headers is a Django application for handling the server headers required for Cross-Origin Resource Sharing (CORS)."
@@ -117,6 +132,21 @@ files = [
 [package.dependencies]
 asgiref = ">=3.6"
 django = ">=4.2"
+
+[[package]]
+name = "django-db-multitenant"
+version = "0.3.2"
+description = "Multitenant support for Django, using one tenant per database."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "django-db-multitenant-0.3.2.tar.gz", hash = "sha256:26dd8cc52aee9039736b8b800fd180663e33d00bf61c30ac89c5a1d0781a363b"},
+    {file = "django_db_multitenant-0.3.2-py2.py3-none-any.whl", hash = "sha256:afe3bf2d212651e34fc2b7ddf33b8b67a966695267ae53e6b2d46c3c1c473af9"},
+]
+
+[package.dependencies]
+Django = ">=1.8.0"
 
 [[package]]
 name = "django-debug-toolbar"
@@ -205,6 +235,20 @@ django-js-asset = "*"
 
 [package.extras]
 tests = ["coverage[toml]", "mock-django"]
+
+[[package]]
+name = "django-tenants"
+version = "3.8.0"
+description = "Tenant support for Django using PostgreSQL schemas."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "django_tenants-3.8.0.tar.gz", hash = "sha256:07d009d5d01be2d65c3f5ddbf323d58d1228838fc1a64fded15c8e5c6f41cf8f"},
+]
+
+[package.dependencies]
+Django = ">=2.1,<6.0"
 
 [[package]]
 name = "djangorestframework"
@@ -911,4 +955,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "2b18c7043443b8b80224110d52e5a96f85182afdc88431a7a8aa34d1f22a8783"
+content-hash = "bbf885fff97e0f12a6a1e1296f9f4c9bf489a8db6ffe9bd07370dee1932c5de7"
