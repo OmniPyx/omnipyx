@@ -1,4 +1,4 @@
-# omnipyx_core/settings/prod.py
+# omnipyx/settings/prod.py
 from .base import *
 
 DEBUG = False

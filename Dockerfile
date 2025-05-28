@@ -1,4 +1,4 @@
-# Dockerfile en omnipyx_core
+# Dockerfile en omnipyx
 
 FROM python:3.11-slim
 

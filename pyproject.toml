@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Omnipyx Core - Modular SaaS Backend"
 authors = ["diego1996 <diego.asencio.cuellar@unillanos.edu.co>"]
 readme = "README.md"
-packages = [{ include = "omnipyx_core" }]
+packages = [{ include = "omnipyx" }]
 license = "MIT"
 
 [tool.poetry.dependencies]

@@ -1,5 +1,5 @@
 """
-WSGI config for omnipyx_core project.
+WSGI config for omnipyx project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'omnipyx_core.settings.dev')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'omnipyx.settings.dev')
 
 application = get_wsgi_application()

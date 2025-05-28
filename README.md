@@ -89,8 +89,8 @@ http://localhost:8000/api/docs/
 ## 📁 Project Structure
 
 ```bash
-omnipyx_core/
-├── omnipyx_core/             # Django project core
+omnipyx/
+├── omnipyx/             # Django project core
 │   ├── modules/              # Dynamic module loader
 │   ├── settings/             # Modular environment configs
 ├── requirements/             # Base, dev, and prod requirements

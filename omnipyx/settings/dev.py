@@ -1,4 +1,4 @@
-# omnipyx_core/settings/dev.py
+# omnipyx/settings/dev.py
 from .base import *
 
 DEBUG = True

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Omnipyx Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-100 via-white to-indigo-200 min-h-screen flex items-center justify-center px-4">
+<div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-indigo-300">
+    <h1 class="text-2xl font-bold text-indigo-700 mb-4 text-center">Welcome to Omnipyx</h1>
+    <p class="text-sm text-gray-500 text-center mb-6">Let’s configure your instance for the first time</p>
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Your Name or Company</label>
+            <input type="text" name="name" id="name" required
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+
+        <button type="submit"
+                class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-200 font-semibold">
+            Create License and Setup
+        </button>
+    </form>
+</div>
+</body>
+</html>
